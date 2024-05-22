@@ -1,0 +1,59 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: black;
+}
+
+@font-face {
+  font-family: 'Lorin';
+  src: local('Lorin Regular'), local('Lorin-Regular'),
+      url('../src/fonts/Lorin-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lorin';
+  src: local('Lorin Bold'), local('Lorin-Bold'),
+      url('../src/fonts/Lorin-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lorin';
+  src: local('Lorin Light'), local('Lorin-Light'),
+      url('../src/fonts/Lorin-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lorin';
+  src: local('Lorin ExtraBold'), local('Lorin-ExtraBold'),
+      url('../src/fonts/Lorin-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
+body {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+input {
+  font-size: !important 16px;
+}
+
+.svgLinksIcon {
+  width: 10%;
+  height: auto;
+}
