@@ -21,12 +21,12 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBX2YaYwh4XnueRUpxJgvttgGtIPZw4MkI',
-  authDomain: 'theater-23015.firebaseapp.com',
-  projectId: 'theater-23015',
-  storageBucket: 'theater-23015.appspot.com',
-  messagingSenderId: '748186861007',
-  appId: '1:748186861007:web:40342140e7d4978639a6ba',
+  apiKey: import.meta.env.VITE_APP_API_URL,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 }
 
 // Initialize Firebase
