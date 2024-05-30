@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 import { toogleDrawer } from '../redux/drawerSlice'
 import Drawer from '../components/Drawer'
@@ -30,10 +31,45 @@ const VideoPage = ({ id }) => {
           </div>
         </Link>
       </div>
-      <main className="overflow-hidden w-full gap-4 px-4 py-4 text-center md:gap-8 md:px-6 md:py-12 lg:grid-rows-[minmax(1px,auto) 1fr 1fr 1fr] lg:gap-12">
-        <div className="mb-6 flex items-center justify-center  border border-gray-200 border-gray-200 bg-gray-50 shadow-sm w-full aspect-video overflow-hidden md:rounded-xl md:aspect-video dark:border-gray-800 dark:bg-gray-950 dark:shadow-sm">
+      <main className="overflow-hidden w-full gap-4 px-4 py-4 text-center lg:grid-rows-[minmax(1px,auto) 1fr 1fr 1fr] lg:gap-12">
+        <div id="container" className="w-4/5 h-4/5 mb-6 mx-auto overflow-hidden relative group">
           {/* <span className="w-full h-full object-cover rounded-md bg-muted" /> */}
-          <video
+          <figure>
+            <ReactPlayer url="/garbageside.demo.mp4" width="100%" height="100%" />
+          </figure>
+          <div
+            id="controls"
+            className="opacity-0 p-5 absolute bottom-0 left-0 w-full transition-opacity duration-300 ease-linear group-hover:opacity-100"
+          >
+            <div id="progress-bar" className="h-1 w-full bg-white cursor-pointer mb-4">
+              <div
+                id="progress-indicator"
+                className="h-full w-9 bg-indigo-800 transition-all duration-500 ease-in-out"
+              ></div>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between">
+                <button id="rewind" className="transition-all duration-100 ease-linear hover:scale-125">
+                  <i className="material-icons text-white text-3xl w-12">replay_10 </i>
+                </button>
+
+                <button id="play-pause" className="transition-all duration-100 ease-linear hover:scale-125">
+                  <i className="material-icons text-white text-5xl inline-block w-12">play_arrow</i>
+                </button>
+
+                <button id="fast-forward" className="transition-all duration-100 ease-linear hover:scale-125">
+                  <i className="material-icons text-white text-3xl w-12">forward_10 </i>
+                </button>
+              </div>
+
+              <div>
+                <button id="volume" className="transition-all duration-100 ease-linear hover:scale-125">
+                  <i className="material-icons text-white text-3xl">volume_up</i>
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* <video
             className="h-screen w-full bg-cover"
             style={{
               objectFit: 'cover',
@@ -43,7 +79,7 @@ const VideoPage = ({ id }) => {
           >
             <source src="/garbageside.demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
         </div>
         <div className="space-y-2 md:grid-cols-2 md:gap-4">
           <div className="space-y-2">
