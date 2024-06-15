@@ -1,12 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactPlayer from 'react-player'
-import { IoIosPlay } from 'react-icons/io'
 
 import { toogleDrawer } from '../redux/drawerSlice'
 import Drawer from '../components/Drawer'
-import IMAGES from '../assets/images'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 const VideoPage = ({ id }) => {
   const [isVideoPlay, setIsVideoPlay] = useState(false)
@@ -65,11 +63,7 @@ const VideoPage = ({ id }) => {
       </div>
       <main className="overflow-hidden w-full gap-4 px-4 py-4 text-center lg:grid-rows-[minmax(1px,auto) 1fr 1fr 1fr] lg:gap-12">
         <div id="container" className="w-4/5 h-4/5 mb-6 mx-auto overflow-hidden relative group">
-          {/* <span className="w-full h-full object-cover rounded-md bg-muted" /> */}
           <figure onClick={() => setIsVideoPlay(!isVideoPlay)}>
-            {/* <video className="w-full">
-              <source src="/garbageside.demo.mp4" />
-            </video> */}
             <ReactPlayer
               ref={videoRef}
               onProgress={updateProgress}
@@ -115,17 +109,6 @@ const VideoPage = ({ id }) => {
               </div>
             </div>
           </div>
-          {/* <video
-            className="h-screen w-full bg-cover"
-            style={{
-              objectFit: 'cover',
-            }}
-            controls
-            poster={IMAGES.backgroundImage}
-          >
-            <source src="/garbageside.demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video> */}
         </div>
         <div className="space-y-2 md:grid-cols-2 md:gap-4">
           <div className="space-y-2">
