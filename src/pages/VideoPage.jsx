@@ -1,11 +1,42 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 import { toogleDrawer } from '../redux/drawerSlice'
 import Drawer from '../components/Drawer'
-import IMAGES from '../assets/images'
+import { useRef, useState } from 'react'
 
 const VideoPage = ({ id }) => {
+  const [isVideoPlay, setIsVideoPlay] = useState(false)
+  const [isVideoMuted, setVideoMuted] = useState(false)
+  const [progressBar, setProgressBar] = useState(false)
+
+  const videoRef = useRef(null)
+  const progessBarRef = useRef(null)
+
+  const updateProgress = () => {
+    const progressPercentage = (videoRef.current.getCurrentTime() / videoRef.current.getDuration()) * 100
+    setProgressBar(`${progressPercentage}%`)
+  }
+
+  const seeking = (e) => {
+    const updatedTime = (e?.nativeEvent?.offsetX / progessBarRef.current.offsetWidth) * videoRef.current.getDuration()
+
+    videoRef.current.seekTo(`0.${Math.round(updatedTime)}`, 'fraction')
+  }
+
+  const fullScreen = () => {
+    if (videoRef.current.getInternalPlayer().requestFullscreen) {
+      videoRef.current.getInternalPlayer().requestFullscreen()
+    } else if (videoRef.current.getInternalPlayer().webkitRequestFullscreen) {
+      /* Safari */
+      videoRef.current.getInternalPlayer().webkitRequestFullscreen()
+    } else if (videoRef.current.getInternalPlayer().msRequestFullscreen) {
+      /* IE11 */
+      videoRef.current.getInternalPlayer().msRequestFullscreen()
+    }
+  }
+
   const isDrawerOpen = useSelector((state) => state.isDrawerOpen.value)
   const dispatch = useDispatch()
 
@@ -30,20 +61,54 @@ const VideoPage = ({ id }) => {
           </div>
         </Link>
       </div>
-      <main className="overflow-hidden w-full gap-4 px-4 py-4 text-center md:gap-8 md:px-6 md:py-12 lg:grid-rows-[minmax(1px,auto) 1fr 1fr 1fr] lg:gap-12">
-        <div className="mb-6 flex items-center justify-center  border border-gray-200 border-gray-200 bg-gray-50 shadow-sm w-full aspect-video overflow-hidden md:rounded-xl md:aspect-video dark:border-gray-800 dark:bg-gray-950 dark:shadow-sm">
-          {/* <span className="w-full h-full object-cover rounded-md bg-muted" /> */}
-          <video
-            className="h-screen w-full bg-cover"
-            style={{
-              objectFit: 'cover',
-            }}
-            controls
-            poster={IMAGES.backgroundImage}
+      <main className="overflow-hidden w-full gap-4 px-4 py-4 text-center lg:grid-rows-[minmax(1px,auto) 1fr 1fr 1fr] lg:gap-12">
+        <div id="container" className="w-4/5 h-4/5 mb-6 mx-auto overflow-hidden relative group">
+          <figure onClick={() => setIsVideoPlay(!isVideoPlay)}>
+            <ReactPlayer
+              ref={videoRef}
+              onProgress={updateProgress}
+              muted={isVideoMuted}
+              playing={isVideoPlay}
+              url="/garbageside.demo.mp4"
+              width="100%"
+              height="100%"
+            />
+          </figure>
+          <div
+            id="controls"
+            className="opacity-0 p-5 absolute bottom-0 left-0 w-full transition-opacity duration-300 ease-linear group-hover:opacity-100"
           >
-            <source src="/garbageside.demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            <div className="flex items-center justify-between text-xs">
+              <button
+                id="play-pause"
+                onClick={() => setIsVideoPlay(!isVideoPlay)}
+                className="transition-all duration-100 ease-linear "
+              >
+                <div className="text-white">{isVideoPlay ? 'pause' : 'play'}</div>
+              </button>
+
+              <div onClick={seeking} ref={progessBarRef} className="h-0.5 w-full bg-white cursor-pointer ml-3">
+                <div
+                  id="progress-indicator"
+                  style={{
+                    width: progressBar,
+                  }}
+                  className="h-full  bg-gray-400 transition-all duration-500 ease-in-out"
+                ></div>
+              </div>
+
+              <div className="w-1/5 ">
+                <button id="volume" className="transition-all duration-100 ease-linear m-3">
+                  <div onClick={() => setVideoMuted(!isVideoMuted)} className="text-white">
+                    {isVideoMuted ? 'volume_up' : 'volume_down'}
+                  </div>
+                </button>
+                <button onClick={fullScreen} id="volume" className="transition-all duration-100 ease-linear ">
+                  <div className="text-white">full_screen</div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="space-y-2 md:grid-cols-2 md:gap-4">
           <div className="space-y-2">
