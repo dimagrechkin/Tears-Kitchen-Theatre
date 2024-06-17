@@ -6,18 +6,18 @@ import { toogleDrawer } from '../redux/drawerSlice'
 import Drawer from '../components/Drawer'
 import { Modal } from '../components/Modal'
 import { Video } from '../components/Video'
+import { toogleModal } from '../redux/modalSlice'
 
 const LandingPage = () => {
   const isDrawerOpen = useSelector((state) => state.isDrawerOpen.value)
+  const isStartModalShow = useSelector((state) => state.isStartModalShow.value)
   const dispatch = useDispatch()
 
   const [show, setShow] = useState(false)
-  const [muted, setMuted] = useState(true)
   const [animationOn, setAnimationOff] = useState(true)
   const [opacity, setOpacity] = useState(0.99)
-  const [showModal, setShowModal] = useState(true)
 
-  useEffect(() => {}, [muted])
+  useEffect(() => {}, [isStartModalShow])
 
   const delayAnimationSwitch = () =>
     setTimeout(() => {
@@ -40,21 +40,18 @@ const LandingPage = () => {
   return (
     <>
       <Modal
-        show={showModal}
+        show={isStartModalShow}
         text={'WEBSITE CREATED BY GROUP OF ENTHUSIAST DEVELOPERS.'}
-        isClicked={muted}
-        modalClick={setMuted}
+        isClicked={isStartModalShow}
         hidingText={setOpacity}
       >
         <div
           onClick={() => {
-            setShowModal(!showModal)
+            dispatch(toogleModal())
             delayAnimationSwitch()
             setTimeout(() => {
               interval()
             }, 2000)
-
-            setMuted(false)
           }}
           className="group flex ms-auto items-center justify-center w-3 h-3 mr-4 hover:bg-black border-black border dark:border-dark-3 box"
         >
@@ -89,22 +86,10 @@ const LandingPage = () => {
             </h1>
           </>
         )}
-        {window.innerWidth < 500 && <Video muted={muted} />}
+        {window.innerWidth < 500 && <Video muted={isStartModalShow} />}
       </div>
       <div className="hidden relative  transform  lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-        {window.innerWidth > 500 && <Video muted={muted} />}
-
-        {/* <img
-          alt="Banner image"
-          className="w-full h-auto"
-          height="734"
-          src="/mainbackground.png"
-          style={{
-            aspectRatio: '1280/810',
-            objectFit: 'cover',
-          }}
-          width="1280"
-        /> */}
+        {window.innerWidth > 500 && <Video muted={isStartModalShow} />}
 
         <div className=" subpixel-antialiased absolute inset-0 flex justify-evenly items-end pb-40 px-6">
           <div onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>

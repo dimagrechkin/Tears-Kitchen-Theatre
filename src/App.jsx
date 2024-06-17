@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { Footer, Spinner } from './components'
+import { Spinner } from './components'
 import { initializeApp } from 'firebase/app'
 import AboutPage from './pages/AboutPage'
 import PrivateRoute from './components/PrivateRoute'
@@ -33,19 +33,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 
 export const App = () => {
-  const isDrawerOpen = useSelector((state) => state.isDrawerOpen.value)
-
-  // if (isDrawerOpen) {
-  //   // window.onscroll = function () {
-  //   //   window.scrollTo(0, 0)
-  //   // }
-  //   document.body.classList.add('overflow-hidden')
-  // }
-
-  // // if (!isDrawerOpen) {
-  // //   document.body.classList.remove('overflow-hidden')
-  // // }
-
   return (
     <div className="flex flex-col min-h-[100dvh] before:bg-black bg-white overwlow-hidden">
       <Router>

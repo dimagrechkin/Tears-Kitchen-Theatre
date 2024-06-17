@@ -4,10 +4,42 @@ import { toogleDrawer } from '../redux/drawerSlice'
 import IMAGES from '../assets/images'
 import Drawer from '../components/Drawer'
 import { Link } from 'react-router-dom'
+import Products from '../components/Products'
 
 const MerchPage = () => {
   const isDrawerOpen = useSelector((state) => state.isDrawerOpen.value)
   const dispatch = useDispatch()
+
+  const productData = [
+    {
+      imageUrl: '/placeholder.svg',
+      altText: 'EARLY BIRD TICKET',
+      title: 'EARLY BIRD TICKET',
+      originalPrice: 15,
+      salePrice: null, // No sale price
+    },
+    {
+      imageUrl: '/placeholder.svg',
+      altText: 'DISCFUNCIONAL TICKET',
+      title: 'DISCFUNCIONAL TICKET',
+      originalPrice: 15,
+      salePrice: 0,
+    },
+    {
+      imageUrl: '/placeholder.svg',
+      altText: 'STANDARD TICKET',
+      title: 'STANDARD TICKET',
+      originalPrice: 20,
+      salePrice: 19,
+    },
+    {
+      imageUrl: '/placeholder.svg',
+      altText: 'HOMELESS TICKET',
+      title: 'HOMELESS TICKET',
+      originalPrice: 0,
+      salePrice: null, // No sale price
+    },
+  ]
 
   return (
     <>
@@ -50,7 +82,7 @@ const MerchPage = () => {
         <div className="p-4">
           <div>
             <h1 className="text-2xl font-bold pb-4">MERCH</h1>
-            <p className="text-base">ITEM 1</p>
+            <Products productData={productData} />
           </div>
         </div>
       </div>
