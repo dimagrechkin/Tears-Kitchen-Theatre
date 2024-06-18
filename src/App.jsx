@@ -1,6 +1,5 @@
 import { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 import { Spinner } from './components'
 import { initializeApp } from 'firebase/app'
@@ -11,6 +10,7 @@ const LandingPage = lazy(() => import('./pages/LandingPage'))
 
 const VideoPage = lazy(() => import('./pages/VideoPage'))
 const MerchPage = lazy(() => import('./pages/MerchPage'))
+const CompletePage = lazy(() => import('./pages/CompletePage'))
 
 const NotFound = lazy(() => import('./pages/NotFound'))
 
@@ -44,6 +44,7 @@ export const App = () => {
             <Route path="/cult2" element={<VideoPage id={2} />} />
             <Route path="/cult3" element={<VideoPage id={3} />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/complete" element={<CompletePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

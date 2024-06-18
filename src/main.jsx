@@ -11,7 +11,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { ToastContainer } from 'react-toastify'
 import './index.css'
 
-const stripePromise = loadStripe(
+const stripePromise = await loadStripe(
   'pk_test_51I32C8Dzs7plZ4swbVNVj69gA8vcBOt4h4HsAwU4CAIhIanKMwJ6FHaIPR5Z6MTj20njowGSQWSTxJvOIcSrSTAB00m81bpexq'
 )
 
@@ -19,7 +19,6 @@ const options = {
   mode: 'payment',
   amount: 50,
   currency: 'usd',
-  // Fully customizable with appearance API.
   appearance: {
     theme: 'flat',
     variables: {
@@ -80,11 +79,6 @@ const options = {
     },
   },
 }
-
-// const options = {
-//   clientSecret:
-//     'sk_test_51I32C8Dzs7plZ4swI9DNyir8hYtrX8dsts1R4uf4oyLTMGIUXKhHyWu9cXMAYZLV21PEhX6pfCHN6qfwxQFXlBuo00421ExWHs',
-// }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>

@@ -23,24 +23,33 @@ export const CheckoutForm = () => {
       return
     }
 
-    const client_secret = import.meta.env.VITE_PLAT
+    const res = await fetch('http://127.0.0.1:3000/process-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // Using the token from the form:
+        amount: 1099,
+        currency: 'usd',
+      }),
+    })
+
+    const { client_secret: clientSecret } = await res.json()
 
     const { error } = await stripe.confirmPayment({
       //`Elements` instance that was used to create the Payment Element
+      confirmParams: {
+        return_url: `${window.location.protocol}//${window.location.host}/complete`,
+      },
       elements,
-      client_secret,
+      clientSecret,
     })
 
     if (error) {
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Show error to your customer (for example, payment
-      // details incomplete)
       setErrorMessage(error.message)
     } else {
-      setShowSuccess(true)
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
+      setShowSuccess()
     }
   }
 
