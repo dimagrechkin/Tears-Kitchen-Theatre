@@ -14,12 +14,6 @@ const CompletePage = lazy(() => import('./pages/CompletePage'))
 
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_API_URL,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -48,8 +42,6 @@ export const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
-
-        {/* <Footer /> */}
       </Router>
     </div>
   )
