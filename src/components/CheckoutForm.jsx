@@ -23,7 +23,7 @@ export const CheckoutForm = () => {
       return
     }
 
-    const res = await fetch('http://127.0.0.1:3000/process-payment', {
+    const res = await fetch('https://payment-server-sand.vercel.app/process-payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
