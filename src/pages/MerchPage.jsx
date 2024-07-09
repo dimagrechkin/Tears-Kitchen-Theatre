@@ -11,7 +11,7 @@ const MerchPage = () => {
 
   return (
     <>
-      <Drawer isOpen={isDrawerOpen} setIsOpen={() => dispatch(toogleDrawer())}></Drawer>
+      {/* <Drawer isOpen={isDrawerOpen} setIsOpen={() => dispatch(toogleDrawer())}></Drawer>
       <div className="sticky top-0 z-50 ">
         {!isDrawerOpen && (
           <button
@@ -53,6 +53,28 @@ const MerchPage = () => {
             <p className="text-base">ITEM 1</p>
           </div>
         </div>
+      </div> */}
+      <div className="absolute inset-0 flex flex-col justify-between p-4">
+        <h2 className="text-blue-600 underline ">Merch</h2>
+        <h3>*New*</h3>
+        <ul className="text-blue-600 underline underline-offset-1">
+          <li>
+            <a href="/">TEARS KITCHEN</a>
+          </li>
+          <li>TEARS KITCHEN</li>
+          <li>TEARS KITCHEN</li>
+          <li>TEARS KITCHEN</li>
+        </ul>
+
+        <h2>TICKETS</h2>
+        <ul className="text-blue-600 underline underline-offset-1">
+          <li>TICKETS 1 - XXJFG</li>
+        </ul>
+
+        <h2>Other Platforms</h2>
+        <ul>
+          <li className="text-blue-600 underline underline-offset-1">Youtube, IG, Facebook, Soundcloud</li>
+        </ul>
       </div>
     </>
   )
