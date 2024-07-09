@@ -24,3 +24,5 @@ package-lock.json
 *.sw?
 
 .env
+.firebase
+.firebaserc
