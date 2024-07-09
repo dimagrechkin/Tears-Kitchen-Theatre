@@ -54,25 +54,23 @@ const MerchPage = () => {
           </div>
         </div>
       </div> */}
-      <div className="absolute inset-0 flex flex-col justify-between p-4">
+      <div className="text-xl absolute inset-0 flex flex-col justify-between p-8">
         <h2 className="text-blue-600 underline ">Merch</h2>
-        <h3>*New*</h3>
-        <ul className="text-blue-600 underline underline-offset-1">
-          <li>
-            <a href="/">TEARS KITCHEN</a>
-          </li>
-          <li>TEARS KITCHEN</li>
-          <li>TEARS KITCHEN</li>
-          <li>TEARS KITCHEN</li>
-        </ul>
-
-        <h2>TICKETS</h2>
-        <ul className="text-blue-600 underline underline-offset-1">
-          <li>TICKETS 1 - XXJFG</li>
-        </ul>
-
-        <h2>Other Platforms</h2>
         <ul>
+          <li>*New*</li>
+          <li className="text-blue-600 underline underline-offset-1">TEARS KITCHEN</li>
+          <li className="text-blue-600 underline underline-offset-1">TEARS KITCHEN</li>
+          <li className="text-blue-600 underline underline-offset-1">TEARS KITCHEN</li>
+          <li className="text-blue-600 underline underline-offset-1">TEARS KITCHEN</li>
+        </ul>
+
+        <ul>
+          <li>TICKETS</li>
+          <li className="text-blue-600 underline underline-offset-1">TICKETS 1 - XXJFG</li>
+        </ul>
+
+        <ul>
+          <li>Contacts</li>
           <li className="text-blue-600 underline underline-offset-1">Youtube, IG, Facebook, Soundcloud</li>
         </ul>
       </div>
